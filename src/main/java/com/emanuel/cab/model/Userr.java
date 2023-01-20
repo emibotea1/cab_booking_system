@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class Userr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,9 @@ public class User {
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
-    private List<UserRole> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
-    public User() {
+    public Userr() {
     }
 
     public String getFirstName() {
@@ -78,11 +78,11 @@ public class User {
         this.password = password;
     }
 
-    public List<UserRole> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<UserRole> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

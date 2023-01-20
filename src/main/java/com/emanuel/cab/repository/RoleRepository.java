@@ -1,9 +1,9 @@
 package com.emanuel.cab.repository;
 
-import com.emanuel.cab.model.UserRole;
+import com.emanuel.cab.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepository extends JpaRepository<UserRole, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    UserRole findByName(String name);
+    Role findByName(String name);
 }

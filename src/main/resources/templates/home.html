@@ -10,11 +10,34 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
 </head>
+
+<style>
+.options {
+  background-color: MediumSeaGreen;
+  color: white;
+  font-size: 30px;
+  border: 2px solid black;
+  margin: 100px;
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.title {
+text-align: center;
+color: black;
+font-size: 45px;
+}
+
+</style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Online Cab Booking System</a>
-        <button class="navbar-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" th:href="@{/home}">Online Cab Booking System</a>
+        <button class="navbar-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggle-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -26,11 +49,17 @@
         </div>
     </div>
 </nav>
-<br /><br />
+<br/><br/>
 <div class="container">
     <div class="row">
-        <h1 class="text-center"> UberLite </h1>
+        <h1 class="title"> ÜberLite </h1>
     </div>
 </div>
+
+<div class="text-center">
+    <button class="options">BOOK A CAB</button>
+</div>
+
+
 </body>
 </html>

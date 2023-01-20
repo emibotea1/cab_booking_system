@@ -9,27 +9,27 @@ import java.util.Collection;
 
 public class SecurityUser implements UserDetails {
 
-    private User user;
+    private Userr userr;
 
-    public SecurityUser(User customer) {
-        this.user = customer;
+    public SecurityUser(Userr customer) {
+        this.userr = customer;
     }
 
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return userr.getUsername();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userr.getPassword();
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user
+        return Arrays.stream(userr
                         .getEmail()
                         .split(","))
                 .map(SimpleGrantedAuthority::new)

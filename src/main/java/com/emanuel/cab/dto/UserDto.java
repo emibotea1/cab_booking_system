@@ -1,6 +1,6 @@
 package com.emanuel.cab.dto;
 
-import com.emanuel.cab.model.UserRole;
+import com.emanuel.cab.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +19,5 @@ public class UserDto
     private String phoneNumber;
     private String username;
     private String password;
-    private UserRole userRole;
+    private Role role;
 }

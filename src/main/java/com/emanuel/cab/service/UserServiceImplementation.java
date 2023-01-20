@@ -1,8 +1,8 @@
 package com.emanuel.cab.service;
 
 import com.emanuel.cab.dto.UserDto;
-import com.emanuel.cab.model.User;
-import com.emanuel.cab.model.UserRole;
+import com.emanuel.cab.model.Userr;
+import com.emanuel.cab.model.Role;
 import com.emanuel.cab.repository.RoleRepository;
 import com.emanuel.cab.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +16,6 @@ public class UserServiceImplementation implements UserService {
 
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
@@ -26,52 +25,52 @@ public class UserServiceImplementation implements UserService {
         this.roleRepository = roleRepository;
     }
 
-
     @Override
     public void saveUser(UserDto userDto) {
-        User user = new User();
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setEmail(userDto.getEmail());
-        user.setPhoneNumber(userDto.getPhoneNumber());
-        user.setUsername(userDto.getUsername());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        Userr userr = new Userr();
+        userr.setFirstName(userDto.getFirstName());
+        userr.setLastName(userDto.getLastName());
+        userr.setEmail(userDto.getEmail());
+        userr.setPhoneNumber(userDto.getPhoneNumber());
+        userr.setUsername(userDto.getUsername());
+        userr.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        UserRole userRole = roleRepository.findByName("ROLE_ADMIN");
-        if (userRole == null) {
-            userRole = checkUserRoleExist();
+       Role role = roleRepository.findByName("ROLE_ADMIN");
+        if (role != null) {
+            createAdminRole();
         }
-        user.setRoles(List.of(userRole));
-        userRepository.save(user);
+        userr.setRoles(List.of());
+        userRepository.save(userr);
     }
 
-    private UserRole checkUserRoleExist() {
-        UserRole role = new UserRole();
+    private void createAdminRole() {
+        Role role = new Role();
         role.setName("ROLE_ADMIN");
 
-        return roleRepository.save(role);
+        roleRepository.save(role);
     }
 
     @Override
-    public User findUserByUsername(String username) {
+    public Userr findUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
+
     @Override
     public List<UserDto> findAllUsers() {
-        List<User> users = userRepository.findAll();
+        List<Userr> userrs = userRepository.findAll();
 
-        return users.stream().map(this::convertEntityToDto).collect(Collectors.toList());
+        return userrs.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
-    private UserDto convertEntityToDto(User user) {
+    private UserDto convertEntityToDto(Userr userr) {
         UserDto userDto = new UserDto();
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPhoneNumber(user.getPhoneNumber());
-        userDto.setUsername(user.getUsername());
-        userDto.setPassword(user.getPassword());
+        userDto.setFirstName(userr.getFirstName());
+        userDto.setLastName(userr.getLastName());
+        userDto.setEmail(userr.getEmail());
+        userDto.setPhoneNumber(userr.getPhoneNumber());
+        userDto.setUsername(userr.getUsername());
+        userDto.setPassword(userr.getPassword());
 
         return userDto;
     }

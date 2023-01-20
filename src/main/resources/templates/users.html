@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Online Cab Booking System</a>
+        <a class="navbar-brand" th:href="@{/home}">Online Cab Booking System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,17 +39,15 @@
             <th>Email</th>
             <th>Phone number</th>
             <th>Username</th>
-            <th>Password</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.phoneNumber}"></td>
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.password}"></td>
+        <tr th:each="userr : ${userrs}">
+            <td th:text="${userr.firstName}"></td>
+            <td th:text="${userr.lastName}"></td>
+            <td th:text="${userr.email}"></td>
+            <td th:text="${userr.phoneNumber}"></td>
+            <td th:text="${userr.username}"></td>
         </tr>
         </tbody>
     </table>

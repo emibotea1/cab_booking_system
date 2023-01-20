@@ -8,6 +8,13 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * @author EmanuelBotea
+ *
+ * Ce am facut:
+ * - redenumirea clasei
+ */
+
 
 @Setter
 @Getter
@@ -15,16 +22,14 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "role")
-public class UserRole {
+public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String name;
     @ManyToMany(mappedBy = "roles")
-    private List<User> users;
-
-
+    private List<Userr> userrs;
 }

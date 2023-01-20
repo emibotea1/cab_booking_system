@@ -1,7 +1,7 @@
 package com.emanuel.cab.controller;
 
 import com.emanuel.cab.dto.UserDto;
-import com.emanuel.cab.model.User;
+import com.emanuel.cab.model.Userr;
 import com.emanuel.cab.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-
 
 @Controller
 public class HomeController {
@@ -36,24 +35,23 @@ public class HomeController {
     @GetMapping("register")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
+        model.addAttribute("userr", userDto);
 
         return "register";
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
+    public String registration(@Valid @ModelAttribute("userr") UserDto userDto,
                                BindingResult result,
-                               Model model){
-        User existingUser = userService.findUserByUsername(userDto.getEmail());
+                               Model model) {
+        Userr existingUserr = userService.findUserByUsername(userDto.getUsername());
 
-        if(existingUser != null && existingUser.getUsername() != null && !existingUser.getUsername().isEmpty()){
-            result.rejectValue("username", null,
-                    "There is already an account registered with the same username");
+        if (existingUserr != null) {
+            result.rejectValue("username", null, "There is already an account registered with that username");
         }
 
-        if(result.hasErrors()){
-            model.addAttribute("user", userDto);
+        if (result.hasErrors()) {
+            model.addAttribute("userr", userDto);
             return "/register";
         }
 
