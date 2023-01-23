@@ -26,7 +26,8 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
+    public Userr saveUser(UserDto userDto) {
+
         Userr userr = new Userr();
         userr.setFirstName(userDto.getFirstName());
         userr.setLastName(userDto.getLastName());
@@ -41,7 +42,10 @@ public class UserServiceImplementation implements UserService {
         }
         userr.setRoles(List.of());
         userRepository.save(userr);
+        return userr;
     }
+
+
 
     private void createAdminRole() {
         Role role = new Role();

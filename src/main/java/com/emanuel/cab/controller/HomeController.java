@@ -3,10 +3,12 @@ package com.emanuel.cab.controller;
 import com.emanuel.cab.dto.UserDto;
 import com.emanuel.cab.model.Userr;
 import com.emanuel.cab.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +35,7 @@ public class HomeController {
     }
 
     @GetMapping("register")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model) throws Exception {
         UserDto userDto = new UserDto();
         model.addAttribute("userr", userDto);
 
@@ -41,13 +43,14 @@ public class HomeController {
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("userr") UserDto userDto,
+    public String registration(@ModelAttribute("userr") @Valid UserDto userDto,
                                BindingResult result,
-                               Model model) {
+                               Model model, HttpServletRequest request,
+                               Errors errors) {
         Userr existingUserr = userService.findUserByUsername(userDto.getUsername());
 
         if (existingUserr != null) {
-            result.rejectValue("username", null, "There is already an account registered with that username");
+            result.rejectValue("username", "There is already an account registered with that username");
         }
 
         if (result.hasErrors()) {

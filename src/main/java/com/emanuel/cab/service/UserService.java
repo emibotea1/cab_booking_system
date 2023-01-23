@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void saveUser(UserDto userDto);
+    Userr saveUser(UserDto userDto);
 
     Userr findUserByUsername(String username);
 
