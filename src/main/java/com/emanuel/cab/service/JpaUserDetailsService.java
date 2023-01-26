@@ -49,7 +49,6 @@ public class JpaUserDetailsService implements UserDetailsService {
         }
     }
 
-
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))

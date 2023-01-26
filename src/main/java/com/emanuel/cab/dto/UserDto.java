@@ -2,9 +2,9 @@ package com.emanuel.cab.dto;
 
 import com.emanuel.cab.model.Role;
 import com.emanuel.cab.util.ValidEmail;
+import com.emanuel.cab.util.ValidPhoneNumber;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +26,9 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String email;
+    @ValidPhoneNumber
     @NotNull
     @NotEmpty
-    @Size(min = 10, max = 10)
     private String phoneNumber;
     @NotNull
     @NotEmpty
