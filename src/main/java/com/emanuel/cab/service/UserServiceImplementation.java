@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImplementation implements UserService {
+public class UserServiceImplementation implements IUserService {
 
 
     private final UserRepository userRepository;

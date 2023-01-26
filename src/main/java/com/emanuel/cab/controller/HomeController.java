@@ -2,7 +2,7 @@ package com.emanuel.cab.controller;
 
 import com.emanuel.cab.dto.UserDto;
 import com.emanuel.cab.model.Userr;
-import com.emanuel.cab.service.UserService;
+import com.emanuel.cab.service.IUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,10 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private final UserService userService;
+    private final IUserService IUserService;
 
-    public HomeController(UserService userService) {
-        this.userService = userService;
+    public HomeController(IUserService IUserService) {
+        this.IUserService = IUserService;
     }
 
     @GetMapping("home")
@@ -47,7 +47,7 @@ public class HomeController {
                                BindingResult result,
                                Model model, HttpServletRequest request,
                                Errors errors) {
-        Userr existingUserr = userService.findUserByUsername(userDto.getUsername());
+        Userr existingUserr = IUserService.findUserByUsername(userDto.getUsername());
 
         if (existingUserr != null) {
             result.rejectValue("username", "There is already an account registered with that username");
@@ -58,13 +58,13 @@ public class HomeController {
             return "/register";
         }
 
-        userService.saveUser(userDto);
+        IUserService.saveUser(userDto);
         return "redirect:/register?success";
     }
 
     @GetMapping("/users")
     public String getViewOfUsers(Model model) {
-        List<UserDto> userDtos = userService.findAllUsers();
+        List<UserDto> userDtos = IUserService.findAllUsers();
         model.addAttribute("users", userDtos);
 
         return "users";
