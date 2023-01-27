@@ -45,8 +45,7 @@ public class HomeController {
     @PostMapping("/register/save")
     public String registration(@ModelAttribute("userr") @Valid UserDto userDto,
                                BindingResult result,
-                               Model model, HttpServletRequest request,
-                               Errors errors) {
+                               Model model) {
         Userr existingUserr = IUserService.findUserByUsername(userDto.getUsername());
 
         if (existingUserr != null) {

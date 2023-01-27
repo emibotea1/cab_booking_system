@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImplementation implements IUserService {
 
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
@@ -44,8 +43,6 @@ public class UserServiceImplementation implements IUserService {
         userRepository.save(userr);
         return userr;
     }
-
-
 
     private void createAdminRole() {
         Role role = new Role();
