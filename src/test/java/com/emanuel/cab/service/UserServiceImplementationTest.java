@@ -11,17 +11,21 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.util.AssertionErrors;
 
 
 import java.util.function.BooleanSupplier;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserServiceImplementationTest {
 
@@ -41,16 +45,19 @@ class UserServiceImplementationTest {
     @Test
     void itShouldCheckIfSavingANewUserIsSavedCorrectly() {
         //given
-        UserDto userDto = new UserDto("Jamila", "Henderson", "jamila@yahoo.com", "0723123234", "username", "jamila");
+        String password = "jamila";
+        UserDto userDto = new UserDto("Jamila", "Henderson", "jamila@yahoo.com", "0723123234", "username", password);
         //when
-        when(passwordEncoder.encode("jamila")).thenReturn("jamilaCriptat");
-        when(roleRepository.findByName("ROLE_ADMIN")).thenReturn(new Role());
+        //String encodedPassword = passwordEncoder.encode(password);
+        String encodedPassword = when(passwordEncoder.encode(password)).thenReturn("jamilaCriptat").toString();
+        //when(roleRepository.findByName("ROLE_ADMIN")).thenReturn(new Role());
 
         //then
         Userr expectedResult =
-                new Userr(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(), userDto.getPhoneNumber(), userDto.getUsername(), "jamilaCriptat");
+                new Userr(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(), userDto.getPhoneNumber(), userDto.getUsername(), encodedPassword);
         Userr actualResult = underTest.saveUser(userDto);
         assertThat(actualResult).isEqualTo(expectedResult);
+        //assertEquals("message:", expectedResult, actualResult);
     }
 
     @Test
