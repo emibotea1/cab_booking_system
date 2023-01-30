@@ -26,7 +26,7 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String email;
-    @ValidPhoneNumber
+    //@ValidPhoneNumber
     @NotNull
     @NotEmpty
     private String phoneNumber;
@@ -37,4 +37,13 @@ public class UserDto {
     @NotEmpty
     private String password;
     private Role role;
+
+    public UserDto(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
 }
