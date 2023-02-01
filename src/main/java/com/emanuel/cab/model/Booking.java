@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,7 +16,7 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "booking_id")
     private Integer id;
     @Column(name = "pick_up_location")
     private String pickUpLocation;
@@ -26,9 +24,7 @@ public class Booking {
     private String dropOffPoint;
     @Column(name = "created_at")
     private Long createdAt;
-//    @Column(name = "user_id")
-//    @ManyToMany(mappedBy = "bookings")
-//    @JoinColumn(name = "user_id")
-//    private List<Userr> bookingUsers;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Userr users;
 }

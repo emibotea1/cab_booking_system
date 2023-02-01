@@ -9,16 +9,18 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+
 @Entity
+@Table(name = "users")
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "users")
+@AllArgsConstructor
 public class Userr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
     @Column(name = "first_name")
     private String firstName;
@@ -39,5 +41,6 @@ public class Userr {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
-
+    @OneToMany(mappedBy = "users")
+    List<Booking> bookings;
 }
