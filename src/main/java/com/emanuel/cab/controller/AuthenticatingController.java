@@ -29,17 +29,21 @@ public class AuthenticatingController {
     }
 
     @GetMapping("/register")
-    public ModelAndView showRegistrationForm() {
+    public ModelAndView showRegistrationForm(Model model) throws Exception {
+        UserDto userDto = new UserDto();
+        model.addAttribute("userr", userDto);
+
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("register");
+        modelAndView.addObject("register", userDto);
 
         return modelAndView;
     }
 
+    //TODO: make a success message!
     @PostMapping("/register/save")
-    public String registration(@ModelAttribute("userr") @Valid UserDto userDto,
-                               BindingResult result,
-                               Model model) {
+    public ModelAndView registration(@ModelAttribute("userr") @Valid UserDto userDto,
+                                     BindingResult result,
+                                     Model model) {
         Userr existingUserr = IUserService.findUserByUsername(userDto.getUsername());
 
         if (existingUserr != null) {
@@ -47,11 +51,19 @@ public class AuthenticatingController {
         }
 
         if (result.hasErrors()) {
-            model.addAttribute("userr", userDto);
-            return "/register";
+            ModelAndView modelAndView = new ModelAndView();
+            String target = "redirect: " + "/register";
+            modelAndView.setViewName(target);
+
+            return modelAndView;
         }
 
+        String target = "redirect: " + "/register";
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(target);
+
         IUserService.saveUser(userDto);
-        return "redirect:/register?success";
+        return modelAndView;
     }
 }
