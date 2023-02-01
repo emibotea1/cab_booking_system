@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 public class BookingController {
@@ -20,25 +22,31 @@ public class BookingController {
     }
 
     @GetMapping("/booking")
-    public String booking(Model model) {
+    public ModelAndView booking() {
+        ModelAndView modelAndView = new ModelAndView();
         BookingDto bookingDto = new BookingDto();
-        model.addAttribute("booking", bookingDto);
+        modelAndView.addObject("booking", bookingDto);
 
-        return "booking";
+        return modelAndView;
     }
 
     @PostMapping("/booking/save")
-    public String bookACab(@ModelAttribute("booking")
-                           @Valid BookingDto bookingDto,
-                           BindingResult result,
-                           Model model) {
+    public ModelAndView bookACab(
+            @Valid BookingDto bookingDto,
+            BindingResult result,
+            final RedirectAttributes redirectAttributes
+    ) {
+        ModelAndView modelAndView = new ModelAndView();
 
-        if (result.hasErrors()) {
-            model.addAttribute("booking", bookingDto);
-            return "/booking";
-        }
+        String target = "redirect:" + "/booking";
+//        redirectAttributes.addFlashAttribute("error", true);
+//        redirectAttributes.addFlashAttribute("added", "Error message here");
+        //redirectAttributes.addFlashAttribute("alert alert-info", true);
+        redirectAttributes.addFlashAttribute( "success","You've successfully booked a cab. Enjoy your ride!");
+        modelAndView.setViewName(target);
 
         bookingService.saveBooking(bookingDto);
-        return "redirect:/booking?success";
+
+        return modelAndView;
     }
 }

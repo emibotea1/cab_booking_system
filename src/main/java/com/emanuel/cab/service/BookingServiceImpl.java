@@ -20,9 +20,6 @@ public class BookingServiceImpl implements IBookingService {
     @Override
     public Booking saveBooking(BookingDto bookingDto) {
         Booking booking = new Booking();
-        booking.setFirstName(bookingDto.getFirstName());
-        booking.setLastName(bookingDto.getLastName());
-        booking.setPhoneNumber(bookingDto.getPhoneNumber());
         booking.setPickUpLocation(bookingDto.getPickUpLocation());
         booking.setDropOffPoint(bookingDto.getDropOffPoint());
         booking.setCreatedAt(System.currentTimeMillis());
@@ -41,12 +38,9 @@ public class BookingServiceImpl implements IBookingService {
 
     private BookingDto convertEntityToDto(Booking booking) {
         BookingDto bookingDto = new BookingDto();
-        bookingDto.setFirstName(booking.getFirstName());
-        bookingDto.setLastName(booking.getLastName());
-        bookingDto.setPhoneNumber(booking.getPhoneNumber());
         bookingDto.setPickUpLocation(bookingDto.getPickUpLocation());
         bookingDto.setDropOffPoint(booking.getDropOffPoint());
-
+        bookingDto.setCreatedAt(booking.getCreatedAt());
         return bookingDto;
     }
 }
