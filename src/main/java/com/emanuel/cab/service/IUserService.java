@@ -22,4 +22,6 @@ public interface IUserService {
     Userr findUserByUsername(String username);
 
     List<UserDto> findAllUsers();
+
+    Userr getCurrentlyAuthenticatedUser();
 }

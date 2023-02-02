@@ -5,6 +5,8 @@ import com.emanuel.cab.model.Userr;
 import com.emanuel.cab.model.Role;
 import com.emanuel.cab.repository.RoleRepository;
 import com.emanuel.cab.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +64,13 @@ public class UserServiceImplementation implements IUserService {
         List<Userr> userrs = userRepository.findAll();
 
         return userrs.stream().map(this::convertEntityToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Userr getCurrentlyAuthenticatedUser() {
+            var principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            var username = principal.getUsername();
+            return findUserByUsername(username);
     }
 
     private UserDto convertEntityToDto(Userr userr) {
