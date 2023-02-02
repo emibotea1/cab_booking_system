@@ -3,8 +3,6 @@ package com.emanuel.cab.service;
 import com.emanuel.cab.dto.BookingDto;
 import com.emanuel.cab.model.Booking;
 import com.emanuel.cab.repository.BookingRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +29,7 @@ public class BookingServiceImpl implements IBookingService {
         booking.setPickUpLocation(bookingDto.getPickUpLocation());
         booking.setDropOffPoint(bookingDto.getDropOffPoint());
         booking.setCreatedAt(System.currentTimeMillis());
-        int userId = findIdOfAuthenticatedUser();
-
+        booking.setUsers(userService.getCurrentlyAuthenticatedUser());
 
         bookingRepository.save(booking);
 
@@ -52,13 +49,5 @@ public class BookingServiceImpl implements IBookingService {
         bookingDto.setDropOffPoint(booking.getDropOffPoint());
         bookingDto.setCreatedAt(booking.getCreatedAt());
         return bookingDto;
-    }
-
-    private int findIdOfAuthenticatedUser() {
-        var principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        var username = principal.getUsername();
-        var myLoggedInUser = userService.findUserByUsername(username);
-
-        return myLoggedInUser.getId();
     }
 }
