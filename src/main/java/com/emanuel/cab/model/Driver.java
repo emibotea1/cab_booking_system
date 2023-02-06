@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.geo.Point;
 
 
 @Entity
@@ -22,11 +21,13 @@ public class Driver {
     @Column(name = "name")
     private String name;
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
     @Column(name = "rating")
-    private String rating;
-    @Column(name = "flag")
-    private boolean flag;
-    @Column(name = "driver_coordinate")
-    private Point driverCoordinate;
+    private double rating;
+    @Column(name = "available")
+    private Boolean available;
+    @Column(name = "longitude")
+    private String longitude;
+    @Column(name = "latitude")
+    private String latitude;
 }
