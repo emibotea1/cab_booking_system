@@ -31,7 +31,18 @@ color: black;
 font-size: 45px;
 }
 
+
 </style>
+
+<script>
+    function goToBookingPage() {
+    window.location.href="http://localhost:8080/booking";
+    }
+
+    function goToBookedCabs() {
+    window.location.href="";
+    }
+</script>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -45,6 +56,9 @@ font-size: 45px;
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -57,11 +71,18 @@ font-size: 45px;
 </div>
 
 <div class="text-center">
-    <button class="options">BOOK A CAB</button>
-
-    <button class="options">USERS</button>
+    <button class="options" onclick="goToBookingPage()">BOOK A CAB</button>
+    <button class="options" onclick="goToBookedCabs">BOOKINGS</button>
 </div>
 
+
+<!--<input type="submit" onClick="myFunction()"/>-->
+
+<!--<script>-->
+<!--      function myFunction() {-->
+<!--        window.location.href="http://programminghead.com";  -->
+<!--      }-->
+<!--    </script>-->
 
 </body>
 </html>
