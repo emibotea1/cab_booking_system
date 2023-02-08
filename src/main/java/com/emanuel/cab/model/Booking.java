@@ -24,7 +24,12 @@ public class Booking {
     private String dropOffPoint;
     @Column(name = "created_at")
     private Long createdAt;
+    @Column(name = "status")
+    private String status;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Userr users;
+    @ManyToOne
+    @JoinColumn(name = "driver_id", nullable = false)
+    private Driver drivers;
 }
