@@ -76,6 +76,18 @@
                            th:if="${#fields.hasErrors('dropOffPoint')}"></p>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label class="form-label">Select a driver</label>
+                        <td>
+                            <select name="drv" id="drv" class="form-control">
+                                <option th:each="driver : ${driverList}"
+                                        th:value="${driver.driverId}"
+                                        th:text="${driver.name}">
+                                </option>
+                            </select>
+                        </td>
+                    </div>
+
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Book</button>
                     </div>

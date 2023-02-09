@@ -20,8 +20,8 @@ public class BookingDto {
     @NotEmpty
     private String pickUpLocation;
     @NotEmpty
-    private String dropOffPoint;
     @NotNull
+    private String dropOffPoint;
     private Long createdAt;
     private Userr userid;
 }

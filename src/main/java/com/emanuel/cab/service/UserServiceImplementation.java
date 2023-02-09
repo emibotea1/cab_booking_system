@@ -37,20 +37,11 @@ public class UserServiceImplementation implements IUserService {
         userr.setUsername(userDto.getUsername());
         userr.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role role = roleRepository.findByName("ROLE_ADMIN");
-        if (role != null) {
-            createAdminRole();
-        }
-        userr.setRoles(List.of());
+       Role role = roleRepository.findRoleByName("ROLE_USER");
+       userr.setRoles(List.of(role));
+
         userRepository.save(userr);
         return userr;
-    }
-
-    private void createAdminRole() {
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-
-        roleRepository.save(role);
     }
 
     @Override

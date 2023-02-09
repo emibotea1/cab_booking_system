@@ -28,7 +28,8 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/driver").permitAll()
+                        .requestMatchers("/driver/save").permitAll()
                         .requestMatchers("/users").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
