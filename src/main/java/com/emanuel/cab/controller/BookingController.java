@@ -2,7 +2,6 @@ package com.emanuel.cab.controller;
 
 import com.emanuel.cab.dto.BookingDto;
 import com.emanuel.cab.model.Driver;
-import com.emanuel.cab.repository.BookingRepository;
 import com.emanuel.cab.service.IBookingService;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -16,6 +15,7 @@ import java.util.List;
 
 @RestController
 public class BookingController {
+
 
     private final IBookingService bookingService;
 
@@ -38,7 +38,6 @@ public class BookingController {
     @PostMapping("/booking/save")
     public ModelAndView bookACab(
             @Valid BookingDto bookingDto,
-            BindingResult result,
             final RedirectAttributes redirectAttributes
     ) {
         ModelAndView modelAndView = new ModelAndView();

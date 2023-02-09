@@ -1,5 +1,6 @@
 package com.emanuel.cab.service;
 
+import com.emanuel.cab.dto.DriverDto;
 import com.emanuel.cab.model.Driver;
 import com.emanuel.cab.repository.DriverRepository;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,18 @@ public class DriverServiceImpl implements IDriverService {
     }
 
     @Override
-    public void save(Driver driver) {
-        driver.setName(driver.getName());
-        driver.setPhoneNumber(driver.getPhoneNumber());
-        driver.setRating(driver.getRating());
-        driver.setAvailable(driver.getAvailable());
-        driver.setLatitude(driver.getLatitude());
-        driver.setLongitude(driver.getLongitude());
+    public Driver saveDriver(DriverDto driverDto) {
+        Driver driver = new Driver();
+
+        driver.setName(driverDto.getName());
+        driver.setPhoneNumber(driverDto.getPhoneNumber());
+        driver.setRating(driverDto.getRating());
+        driver.setAvailable(driverDto.getAvailable());
+        driver.setLongitude(driverDto.getLongitude());
+        driver.setLatitude(driverDto.getLatitude());
 
         driverRepository.save(driver);
 
+        return driver;
     }
 }

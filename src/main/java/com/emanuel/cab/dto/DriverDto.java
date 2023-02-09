@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -15,8 +14,8 @@ public class DriverDto {
     private Integer id;
     private String name;
     private String phoneNumber;
-    private String rating;
-    private boolean available;
+    private double rating;
+    private String available;
     private String latitude;
     private String longitude;
 }
