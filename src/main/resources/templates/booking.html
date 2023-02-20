@@ -7,11 +7,18 @@
     <title>Registration and Login System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" src="./index.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4pkqFW0mSw5mlA_BYyplIrjI3SSI1x78&callback=initMap&v=weekly"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="header">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Online Cab Booking System</a>
+        <a class="navbar-brand" th:href="@{/home}">Home - UberLite</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,8 +52,7 @@
                         method="post"
                         role="form"
                         th:action="@{/booking/save}"
-                        th:object="${booking}"
-                >
+                        th:object="${booking}">
 
                     <div class="form-group mb-3">
                         <label class="form-label">Pick-Up Location</label>
@@ -96,5 +102,6 @@
         </div>
     </div>
 </div>
+<div id="map"></div>
 </body>
 </html>
