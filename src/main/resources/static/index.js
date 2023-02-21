@@ -9,7 +9,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: 45.657975, lng: 25.601198 },
-    mapTypeControl: false,
+    mapTypeControl: false
   });
   geocoder = new google.maps.Geocoder();
 
@@ -47,7 +47,7 @@ function initMap() {
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
   marker = new google.maps.Marker({
-    map,
+    map
   });
   map.addListener("click", (e) => {
     geocode({ location: e.latLng });
@@ -59,8 +59,8 @@ function initMap() {
     clear();
   });
   clear();
-}
 
+}
 
 function clear() {
   marker.setMap(null);
@@ -94,4 +94,7 @@ function geocode(request) {
     .catch((e) => {
       alert("Geocode was not successful for the following reason: " + e);
     });
+
+
 }
+window.initMap = initMap;
