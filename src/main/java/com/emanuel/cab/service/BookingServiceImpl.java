@@ -54,9 +54,11 @@ public class BookingServiceImpl implements IBookingService {
 
     private BookingDto convertEntityToDto(Booking booking) {
         BookingDto bookingDto = new BookingDto();
-        bookingDto.setPickUpLocation(bookingDto.getPickUpLocation());
-        bookingDto.setDropOffPoint(bookingDto.getDropOffPoint());
-        bookingDto.setCreatedAt(bookingDto.getCreatedAt());
+        bookingDto.setPickUpLocation(booking.getPickUpLocation());
+        bookingDto.setDropOffPoint(booking.getDropOffPoint());
+        bookingDto.setCreatedAt(booking.getCreatedAt());
+        bookingDto.setDriverName(booking.getDrivers().getName());
+        bookingDto.setDriverPhoneNumber(booking.getDrivers().getPhoneNumber());
         return bookingDto;
     }
 }

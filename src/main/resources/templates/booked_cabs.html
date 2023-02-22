@@ -44,7 +44,7 @@
         </tr>
         </thead>
         <tbody>
-                <tr th:each="booking : ${booked_cabs}">
+                <tr th:each="booking : ${listOfBookings}">
                     <td th:text="${booking.pickUpLocation}"></td>
                     <td th:text="${booking.dropOffPoint}"></td>
                     <td th:text="${booking.driverName}"></td>

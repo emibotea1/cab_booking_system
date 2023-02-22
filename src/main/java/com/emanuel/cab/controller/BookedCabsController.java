@@ -19,9 +19,9 @@ public class BookedCabsController {
     }
 
     @GetMapping("/booked_cabs")
-    public String getViewOfBookedCabs(Model model) {
-        List<BookingDto> bookings = bookingService.findAllBooking();
-        model.addAttribute("booked_cabs", bookings);
+    public String listOfBookings(Model model) {
+        List<BookingDto> listOfBookings = bookingService.findAllBooking();
+        model.addAttribute("listOfBookings", listOfBookings);
 
         return "booked_cabs";
     }
