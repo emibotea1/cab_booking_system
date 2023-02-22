@@ -39,19 +39,17 @@
         <tr>
             <th>Pick-Up Location</th>
             <th>Drop-Off Point</th>
-            <th>Status</th>
             <th>Driver Name</th>
             <th>Driver Phone Number</th>
         </tr>
         </thead>
         <tbody>
-        <!--        <tr th:each="userr : ${userrs}">-->
-        <!--            <td th:text="${userr.firstName}"></td>-->
-        <!--            <td th:text="${userr.lastName}"></td>-->
-        <!--            <td th:text="${userr.email}"></td>-->
-        <!--            <td th:text="${userr.phoneNumber}"></td>-->
-        <!--            <td th:text="${userr.username}"></td>-->
-        <!--        </tr>-->
+                <tr th:each="booking : ${booked_cabs}">
+                    <td th:text="${booking.pickUpLocation}"></td>
+                    <td th:text="${booking.dropOffPoint}"></td>
+                    <td th:text="${booking.driverName}"></td>
+                    <td th:text="${booking.driverPhoneNumber}"></td>
+                </tr>
         </tbody>
     </table>
 </div>

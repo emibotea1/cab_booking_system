@@ -1,6 +1,7 @@
 package com.emanuel.cab.dto;
 
 
+import com.emanuel.cab.model.Driver;
 import com.emanuel.cab.model.Userr;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -24,4 +25,7 @@ public class BookingDto {
     private String dropOffPoint;
     private Long createdAt;
     private Userr userid;
+    private Driver driverId;
+    private String driverName;
+    private String driverPhoneNumber;
 }

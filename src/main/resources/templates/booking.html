@@ -85,7 +85,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Select a driver</label>
                         <td>
-                            <select name="drv" id="drv" class="form-control">
+                            <select th:field="*{driverId}">
                                 <option th:each="driver : ${driverList}"
                                         th:value="${driver.driverId}"
                                         th:text="${driver.name}">

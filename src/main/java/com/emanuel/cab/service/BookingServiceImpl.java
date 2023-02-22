@@ -32,6 +32,7 @@ public class BookingServiceImpl implements IBookingService {
         booking.setDropOffPoint(bookingDto.getDropOffPoint());
         booking.setCreatedAt(System.currentTimeMillis());
         booking.setUsers(userService.getCurrentlyAuthenticatedUser());
+        booking.setDrivers(bookingDto.getDriverId());
 
         bookingRepository.save(booking);
 
@@ -54,8 +55,8 @@ public class BookingServiceImpl implements IBookingService {
     private BookingDto convertEntityToDto(Booking booking) {
         BookingDto bookingDto = new BookingDto();
         bookingDto.setPickUpLocation(bookingDto.getPickUpLocation());
-        bookingDto.setDropOffPoint(booking.getDropOffPoint());
-        bookingDto.setCreatedAt(booking.getCreatedAt());
+        bookingDto.setDropOffPoint(bookingDto.getDropOffPoint());
+        bookingDto.setCreatedAt(bookingDto.getCreatedAt());
         return bookingDto;
     }
 }
